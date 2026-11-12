@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Panel Administrador - JimenezWebUD</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<h:body>
+    <div class="header-bar">
+        <h1>Panel Administrador - Admisiones</h1>
+        <h:form>
+            <p:button value="Volver al Registro" outcome="home" icon="pi pi-arrow-left" styleClass="ui-button-secondary" />
+        </h:form>
+    </div>
+
+    <div class="main-container">
+        <p:growl id="mensajesAdmin" showDetail="true" life="4000" />
+
+        <h:form id="formTablaAspirantes" style="margin-bottom: 2.5rem;">
+            <p:panel header="Listado de Aspirantes Registrados">
+                <p:dataTable id="tablaAspirantes"
+                             var="asp"
+                             value="#{aspiranteBean.listaAspirantes}"
+                             emptyMessage="No hay aspirantes registrados."
+                             paginator="true"
+                             rows="5"
+                             paginatorPosition="bottom"
+                             stripedRows="true">
+
+                    <p:column headerText="Identificación" sortBy="#{asp.identificacion}">
+                        <h:outputText value="#{asp.identificacion}" />
+                    </p:column>
+
+                    <p:column headerText="Nombres" sortBy="#{asp.nombres}">
+                        <h:outputText value="#{asp.nombres}" />
+                    </p:column>
+
+                    <p:column headerText="Apellidos" sortBy="#{asp.apellidos}">
+                        <h:outputText value="#{asp.apellidos}" />
+                    </p:column>
+
+                    <p:column headerText="Correo">
+                        <h:outputText value="#{asp.correo}" />
+                    </p:column>
+
+                    <p:column headerText="Teléfono">
+                        <h:outputText value="#{asp.telefono}" />
+                    </p:column>
+
+                    <p:column headerText="Programa" sortBy="#{asp.programaInteresado}">
+                        <p:tag severity="info" value="#{asp.programaInteresado}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha Registro">
+                        <h:outputText value="#{asp.fechaRegistro}" />
+                    </p:column>
+
+                    <p:column headerText="Acciones" style="width: 100px; text-align: center;">
+                        <p:commandButton icon="pi pi-trash"
+                                         action="#{aspiranteBean.eliminarAspirante(asp.identificacion)}"
+                                         update=":formTablaAspirantes :mensajesAdmin"
+                                         process="@this"
+                                         styleClass="ui-button-danger ui-button-flat" />
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+        <h:form id="formGestionPrograma">
+            <p:panel header="Gestionar Programas Académicos">
+                <div class="form-grid" style="margin-bottom: 1.5rem;">
+
+                    <div class="field-group">
+                        <p:outputLabel for="codigoSnies" value="Código SNIES:" />
+                        <p:inputText id="codigoSnies"
+                                     value="#{aspiranteBean.programaActual.codigoSnies}"
+                                     required="true"
+                                     requiredMessage="El código es obligatorio."
+                                     validatorMessage="Debe tener entre 3 y 15 caracteres.">
+                            <f:validateLength minimum="3" maximum="15" />
+                        </p:inputText>
+                        <p:message for="codigoSnies" />
+                    </div>
+
+                    <div class="field-group">
+                        <p:outputLabel for="nombreProg" value="Nombre del Programa:" />
+                        <p:inputText id="nombreProg"
+                                     value="#{aspiranteBean.programaActual.nombre}"
+                                     required="true"
+                                     requiredMessage="El nombre del programa es obligatorio."
+                                     validatorMessage="Debe tener entre 4 y 80 caracteres.">
+                            <f:validateLength minimum="4" maximum="80" />
+                        </p:inputText>
+                        <p:message for="nombreProg" />
+                    </div>
+
+                    <div class="field-group full-width">
+                        <p:outputLabel for="facultadProg" value="Facultad:" />
+                        <p:inputText id="facultadProg"
+                                     value="#{aspiranteBean.programaActual.facultad}"
+                                     required="true"
+                                     requiredMessage="La facultad es obligatoria."
+                                     validatorMessage="Debe tener entre 4 y 60 caracteres.">
+                            <f:validateLength minimum="4" maximum="60" />
+                        </p:inputText>
+                        <p:message for="facultadProg" />
+                    </div>
+
+                    <div class="field-group full-width">
+                        <p:commandButton value="Agregar Programa"
+                                         action="#{aspiranteBean.guardarPrograma}"
+                                         update=":formGestionPrograma :mensajesAdmin"
+                                         icon="pi pi-plus"
+                                         styleClass="ui-button-primary" />
+                    </div>
+                </div>
+
+                <p:dataTable id="tablaProgramas"
+                             var="prog"
+                             value="#{aspiranteBean.listaProgramas}"
+                             stripedRows="true"
+                             paginator="true"
+                             rows="6"
+                             paginatorPosition="bottom">
+
+                    <p:column headerText="ID" style="width: 60px;">
+                        <h:outputText value="#{prog.id}" />
+                    </p:column>
+
+                    <p:column headerText="Código">
+                        <h:outputText value="#{prog.codigoSnies}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre del Programa">
+                        <h:outputText value="#{prog.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Facultad">
+                        <h:outputText value="#{prog.facultad}" />
+                    </p:column>
+
+                    <p:column headerText="Eliminar" style="width: 90px; text-align: center;">
+                        <p:commandButton icon="pi pi-trash"
+                                         action="#{aspiranteBean.eliminarPrograma(prog.id)}"
+                                         update=":formGestionPrograma :mensajesAdmin"
+                                         process="@this"
+                                         styleClass="ui-button-danger ui-button-flat" />
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </div>
+
+    <footer class="footer-ud">
+        <p><strong>Estudiante:</strong> Sergio Andrés Jiménez Bonilla</p>
+        <p><strong>Asignatura:</strong> Programación | <strong>Grupo:</strong> 020-81</p>
+        <p><strong>Universidad Distrital Francisco José de Caldas</strong> - 2026</p>
+    </footer>
+</h:body>
+</html>

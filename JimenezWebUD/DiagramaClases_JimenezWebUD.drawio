@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2026-11-11T20:36:00.000Z" agent="Mozilla/5.0" version="24.0.0" type="device">
+  <diagram id="DiagramaClasesJimenezWebUD" name="Diagrama de Clases - JimenezWebUD">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="persona" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.model.Persona&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- identificacion: String&lt;br/&gt;- nombres: String&lt;br/&gt;- apellidos: String&lt;br/&gt;- correo: String&lt;br/&gt;- telefono: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ Persona()&lt;br/&gt;+ getIdentificacion(): String&lt;br/&gt;+ setIdentificacion(String): void&lt;br/&gt;+ getNombres(): String&lt;br/&gt;+ getApellidos(): String&lt;br/&gt;+ getCorreo(): String&lt;br/&gt;+ getTelefono(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="280" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="aspirante" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.model.Aspirante&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- programaInteresado: String&lt;br/&gt;- fechaRegistro: LocalDate&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ Aspirante()&lt;br/&gt;+ getProgramaInteresado(): String&lt;br/&gt;+ setProgramaInteresado(String): void&lt;br/&gt;+ getFechaRegistro(): LocalDate&lt;br/&gt;+ setFechaRegistro(LocalDate): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="programa" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.model.ProgramaAcademico&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- id: int&lt;br/&gt;- codigoSnies: String&lt;br/&gt;- nombre: String&lt;br/&gt;- facultad: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ ProgramaAcademico()&lt;br/&gt;+ getId(): int&lt;br/&gt;+ getCodigoSnies(): String&lt;br/&gt;+ getNombre(): String&lt;br/&gt;+ getFacultad(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="560" width="310" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="aspRepo" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.repository.AspiranteRepository&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- LISTA_ASPIRANTES: List&amp;lt;Aspirante&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ findAll(): List&amp;lt;Aspirante&amp;gt;&lt;br/&gt;+ save(Aspirante): void&lt;br/&gt;+ deleteByIdentificacion(String): void&lt;br/&gt;+ existsByIdentificacion(String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="430" y="340" width="330" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="progRepo" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.repository.ProgramaRepository&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- LISTA_PROGRAMAS: List&amp;lt;ProgramaAcademico&amp;gt;&lt;br/&gt;- secuenciaId: int&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ findAll(): List&amp;lt;ProgramaAcademico&amp;gt;&lt;br/&gt;+ save(ProgramaAcademico): void&lt;br/&gt;+ deleteById(int): void&lt;br/&gt;+ existsByNombre(String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="430" y="560" width="330" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="aspService" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.services.AspiranteService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- aspiranteRepository: AspiranteRepository&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ listarAspirantes(): List&amp;lt;Aspirante&amp;gt;&lt;br/&gt;+ registrarAspirante(Aspirante): boolean&lt;br/&gt;+ eliminarAspirante(String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="820" y="340" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="progService" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.services.ProgramaService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- programaRepository: ProgramaRepository&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ listarProgramas(): List&amp;lt;ProgramaAcademico&amp;gt;&lt;br/&gt;+ registrarPrograma(ProgramaAcademico): boolean&lt;br/&gt;+ eliminarPrograma(int): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="820" y="560" width="310" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="aspBean" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;co.edu.udistrital.jimenez.controller.AspiranteBean&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- aspiranteActual: Aspirante&lt;br/&gt;- programaActual: ProgramaAcademico&lt;br/&gt;- aspiranteService: AspiranteService&lt;br/&gt;- programaService: ProgramaService&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ init(): void&lt;br/&gt;+ guardarAspirante(): void&lt;br/&gt;+ eliminarAspirante(String): void&lt;br/&gt;+ guardarPrograma(): void&lt;br/&gt;+ eliminarPrograma(int): void&lt;br/&gt;+ getListaAspirantes(): List&amp;lt;Aspirante&amp;gt;&lt;br/&gt;+ getListaProgramas(): List&amp;lt;ProgramaAcademico&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="620" y="40" width="330" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1" value="hereda" style="endArrow=block;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="aspirante" target="persona">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2" value="almacena" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="aspRepo" target="aspirante">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3" value="almacena" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="progRepo" target="programa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel4" value="usa" style="endArrow=open;html=1;rounded=0;" edge="1" parent="1" source="aspService" target="aspRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel5" value="usa" style="endArrow=open;html=1;rounded=0;" edge="1" parent="1" source="progService" target="progRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel6" value="usa" style="endArrow=open;html=1;rounded=0;" edge="1" parent="1" source="aspBean" target="aspService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel7" value="usa" style="endArrow=open;html=1;rounded=0;" edge="1" parent="1" source="aspBean" target="progService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

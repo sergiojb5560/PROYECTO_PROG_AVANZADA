@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Admisiones UD - Registro de Aspirante</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<h:body>
+    <div class="header-bar">
+        <h1>Portal de Admisiones - Universidad Distrital</h1>
+        <h:form>
+            <p:button value="Vista Administrador" outcome="admin" icon="pi pi-cog" styleClass="ui-button-warning" />
+        </h:form>
+    </div>
+
+    <div class="main-container">
+        <h:form id="formAspirante">
+            <p:growl id="mensajes" showDetail="true" life="4500" />
+
+            <p:panel header="Inscripción de Aspirante">
+                <div class="form-grid">
+
+                    <div class="field-group">
+                        <p:outputLabel for="identificacion" value="Identificación:" />
+                        <p:inputText id="identificacion"
+                                     value="#{aspiranteBean.aspiranteActual.identificacion}"
+                                     required="true"
+                                     requiredMessage="La identificación es obligatoria."
+                                     validatorMessage="Debe contener entre 6 y 12 dígitos numéricos.">
+                            <f:validateRegex pattern="^[0-9]{6,12}$" />
+                        </p:inputText>
+                        <p:message for="identificacion" />
+                    </div>
+
+                    <div class="field-group">
+                        <p:outputLabel for="telefono" value="Teléfono:" />
+                        <p:inputText id="telefono"
+                                     value="#{aspiranteBean.aspiranteActual.telefono}"
+                                     required="true"
+                                     requiredMessage="El teléfono es obligatorio."
+                                     validatorMessage="Debe contener entre 7 y 10 dígitos numéricos.">
+                            <f:validateRegex pattern="^[0-9]{7,10}$" />
+                        </p:inputText>
+                        <p:message for="telefono" />
+                    </div>
+
+                    <div class="field-group">
+                        <p:outputLabel for="nombres" value="Nombres:" />
+                        <p:inputText id="nombres"
+                                     value="#{aspiranteBean.aspiranteActual.nombres}"
+                                     required="true"
+                                     requiredMessage="El nombre es obligatorio."
+                                     validatorMessage="Ingrese un nombre válido (solo letras).">
+                            <f:validateRegex pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$" />
+                        </p:inputText>
+                        <p:message for="nombres" />
+                    </div>
+
+                    <div class="field-group">
+                        <p:outputLabel for="apellidos" value="Apellidos:" />
+                        <p:inputText id="apellidos"
+                                     value="#{aspiranteBean.aspiranteActual.apellidos}"
+                                     required="true"
+                                     requiredMessage="Los apellidos son obligatorios."
+                                     validatorMessage="Ingrese apellidos válidos (solo letras).">
+                            <f:validateRegex pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$" />
+                        </p:inputText>
+                        <p:message for="apellidos" />
+                    </div>
+
+                    <div class="field-group">
+                        <p:outputLabel for="correo" value="Correo Electrónico:" />
+                        <p:inputText id="correo"
+                                     value="#{aspiranteBean.aspiranteActual.correo}"
+                                     required="true"
+                                     requiredMessage="El correo es obligatorio."
+                                     validatorMessage="Formato de correo inválido.">
+                            <f:validateRegex pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$" />
+                        </p:inputText>
+                        <p:message for="correo" />
+                    </div>
+
+                    <div class="field-group">
+                        <p:outputLabel for="programa" value="Programa Académico:" />
+                        <p:selectOneMenu id="programa"
+                                         value="#{aspiranteBean.aspiranteActual.programaInteresado}"
+                                         required="true"
+                                         requiredMessage="Seleccione un programa académico.">
+                            <f:selectItem itemLabel="Seleccione un programa" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{aspiranteBean.listaProgramas}"
+                                           var="prog"
+                                           itemLabel="#{prog.nombre}"
+                                           itemValue="#{prog.nombre}" />
+                        </p:selectOneMenu>
+                        <p:message for="programa" />
+                    </div>
+
+                    <div class="field-group full-width" style="margin-top: 1rem;">
+                        <p:commandButton value="Registrar Aspirante"
+                                         action="#{aspiranteBean.guardarAspirante}"
+                                         update="@form"
+                                         icon="pi pi-check"
+                                         styleClass="ui-button-success" />
+                    </div>
+                </div>
+            </p:panel>
+        </h:form>
+    </div>
+
+    <footer class="footer-ud">
+        <p><strong>Estudiante:</strong> Sergio Andrés Jiménez Bonilla</p>
+        <p><strong>Asignatura:</strong> Programación | <strong>Grupo:</strong> 020-81</p>
+        <p><strong>Universidad Distrital Francisco José de Caldas</strong> - 2026</p>
+    </footer>
+</h:body>
+</html>
